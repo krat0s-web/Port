@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rubrique 2 : Les Notes de cours - Portfolio SI</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Sécurité : CSP pour limiter les sources -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:;">
+    <!-- Autres headers de sécurité -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+</head>
+<body class="dark-theme">
+    <header>
+        <nav class="container">
+            <ul id="nav-menu">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="travaux.html">Rubrique 1 : Travaux</a></li>
+                <li><a href="notes.html">Rubrique 2 : Notes</a></li>
+                <li><a href="documents.html">Rubrique 3 : Documents SI</a></li>
+                <li><a href="competences.html">Rubrique 4 : Compétences</a></li>
+                <li><a href="projet.html">Rubrique 5 : Projet Final</a></li>
+                <li><a href="soutenance.html">Rubrique 6 : Soutenance</a></li>
+                <li><a href="ressources.html">Rubrique 7 : Ressources</a></li>
+            </ul>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section id="content" class="rubrique" style="display: none;">
+        <div class="container">
+            <h1>Rubrique 2 : Les Notes de cours</h1>
+            <p class="competence">Compétence visée : Développer une autonomie dans la prise de notes et l'utilisation des ressources documentaires</p>
+            <div class="criteres">
+                <strong>Critères de réussite :</strong> Les notes sont structurées et accompagnées d'une bibliographie.
+            </div>
+            <div class="grid">
+                <div class="card">
+                    <h3>Notes Cours 1 : Bases de Données</h3>
+                    <p>Notes structurées avec biblio. <a href="notes1.pdf" download>Télécharger</a></p>
+                </div>
+                <div class="card">
+                    <h3>Notes Cours 2 : Gestion SI</h3>
+                    <p>Résumé et références. <a href="notes2.pdf" download>Télécharger</a></p>
+                </div>
+                <!-- Ajoutez plus de cards au besoin -->
+            </div>
+        </div>
+    </section>
+
+    <div id="password-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #1a1a2e; display: flex; justify-content: center; align-items: center; z-index: 2000; text-align: center; color: white;">
+        <div>
+            <h2>Accès Restreint</h2>
+            <p>Entrez le mot de passe pour voir cette page.</p>
+            <button onclick="checkPassword()" style="padding: 10px 20px; background: #00bfff; color: white; border: none; border-radius: 5px; cursor: pointer;">Entrer Mot de Passe</button>
+            <p style="margin-top: 20px;"><a href="index.html" style="color: #00bfff;">Retour à l'Accueil</a></p>
+        </div>
+    </div>
+
+    <script>
+        const PASSWORD = "portfolio2025"; // Change ce mot de passe ici
+
+        function checkPassword() {
+            const enteredPassword = prompt("Entrez le mot de passe pour accéder au portfolio :");
+            if (enteredPassword === PASSWORD) {
+                document.getElementById("content").style.display = "flex";
+                document.getElementById("content").style.animation = "fadeIn 1s ease-in";
+                document.getElementById("password-screen").style.display = "none";
+            } else {
+                alert("Mot de passe incorrect ! Réessayez.");
+            }
+        }
+
+        function toggleMenu() {
+            const menu = document.getElementById('nav-menu');
+            menu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
