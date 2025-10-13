@@ -1,39 +1,264 @@
-body {
-    font-family: Arial, sans-serif;
+/* Reset total - Anti-blanc partout, même au scroll + Fix Zoom (sans footer) */
+* {
     margin: 0;
-    padding: 20px;
-    background-color: #f4f4f4;
+    padding: 0;
+    box-sizing: border-box;
 }
-
-nav {
-    margin-bottom: 20px;
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
 }
-
-#menu {
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
+body.dark-theme {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #f5f5f5 !important; /* Force visibilité */
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !important;
+    background-attachment: fixed; /* Dégradé fixe, couvre tout au scroll */
+    min-height: 100vh; /* Min pour pages courtes, étire pour longues */
+    display: flex;
+    flex-direction: column;
 }
-
-.content {
-    max-width: 800px;
+.container {
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 0 1.25rem; /* 20px en rem pour scale au zoom */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-section {
-    background-color: #fff;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+/* Header */
+header {
+    background: rgba(0, 0, 0, 0.4) !important;
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+}
+nav {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 1.25rem; /* Scale au zoom */
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem; /* Gap relative */
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+}
+nav a {
+    color: #f5f5f5 !important;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    white-space: nowrap; /* Pas de wrap forcé sur liens */
+}
+nav a:hover {
+    background: rgba(0, 191, 255, 0.2);
+    color: #00bfff !important;
+    border-color: #00bfff;
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
+}
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    align-items: center;
+}
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: #f5f5f5;
+    margin: 4px 0;
+    transition: 0.3s;
 }
 
-h1 {
+/* Hero (Accueil) - Plus de padding en bas sans footer */
+.hero {
     text-align: center;
-    color: #333;
+    padding: 150px 0 100px; /* Plus d'espace en bas */
+    animation: fadeIn 1s ease-in;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: inherit !important; /* Hérite du body */
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.hero h1 {
+    font-size: 4rem;
+    color: #ffffff !important;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    text-align: center;
+}
+.hero .subtitle {
+    font-size: 1.2rem;
+    color: #f5f5f5 !important;
+    margin-bottom: 2rem;
+    max-width: 600px;
+}
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 0 10px;
+    background: rgba(0, 191, 255, 0.1);
+    color: #f5f5f5 !important;
+    text-decoration: none;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    border: 2px solid #00bfff;
+}
+.btn:hover {
+    transform: translateY(-3px);
+    background: rgba(0, 191, 255, 0.3);
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.4);
+}
+.welcome-btn {
+    background: rgba(0, 191, 255, 0.2);
+    border-color: #00bfff;
+    color: #00bfff !important;
+}
+.welcome-btn:hover {
+    color: #ffffff !important;
+    background: #00bfff;
 }
 
-h2 {
-    color: #555;
+/* Rubriques (pages comme travaux.html) - Plus de padding en bas sans footer */
+.rubrique {
+    background: inherit !important; /* Hérite du body pour no white */
+    padding: 150px 0 150px; /* Plus d'espace en bas pour respirer */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: 100vh; /* Full sans footer */
+}
+.rubrique h1 {
+    font-size: 2.5rem;
+    color: #00bfff !important;
+    margin-bottom: 1rem;
+}
+.rubrique .competence {
+    font-size: 1.1rem;
+    color: #f0f0f0 !important;
+    margin-bottom: 2rem;
+    font-style: italic;
+    max-width: 800px;
+}
+.rubrique .criteres {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    max-width: 800px;
+    border: 1px solid #00bfff;
+    color: #f5f5f5 !important;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    justify-items: center;
+}
+.card {
+    background: rgba(0, 0, 0, 0.6) !important;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 191, 255, 0.3);
+    width: 100%;
+    max-width: 350px;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 191, 255, 0.2);
+}
+.card h3 {
+    color: #00bfff !important;
+    margin-bottom: 0.5rem;
+}
+.card p {
+    color: #f0f0f0 !important;
+    margin-bottom: 1rem;
+}
+.card a {
+    color: #00bfff !important;
+    text-decoration: none;
+}
+.card a:hover {
+    text-decoration: underline;
+}
+
+/* Styles footer supprimés - Plus besoin */
+
+/* Responsive + Fix Zoom (pour <120% zoom, wrap plus tôt) */
+@media (max-width: 1200px) { /* Simule zoom bas */
+    nav ul {
+        gap: 0.5rem; /* Gap plus petit au zoom bas */
+    }
+    nav a {
+        padding: 0.5rem 1rem; /* Plus compact */
+        font-size: 0.9rem;
+    }
+}
+@media (max-width: 768px) {
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 1rem 0;
+        gap: 0.5rem;
+    }
+    nav ul.active {
+        display: flex;
+    }
+    .menu-toggle {
+        display: flex;
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    .btn {
+        display: block;
+        margin: 10px auto;
+    }
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    nav a {
+        padding: 1rem;
+        text-align: center;
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+    .rubrique {
+        padding: 150px 0 100px; /* Ajusté mobile sans footer */
+    }
 }
