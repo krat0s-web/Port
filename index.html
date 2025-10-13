@@ -3,32 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sommaire</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Portfolio SI - Système d'Information</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Sécurité : CSP pour limiter les sources -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:;">
+    <!-- Autres headers de sécurité -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 </head>
-<body>
-    <nav>
-        <select id="menu" onchange="location = this.value;">
-            <option value="">Sélectionner une section</option>
-            <option value="#section1">Section 1</option>
-            <option value="#section2">Section 2</option>
-            <option value="#section3">Section 3</option>
-        </select>
-    </nav>
-    <div class="content">
-        <h1>Sommaire</h1>
-        <section id="section1">
-            <h2>Section 1</h2>
-            <p>Ceci est le contenu de la Section 1.</p>
-        </section>
-        <section id="section2">
-            <h2>Section 2</h2>
-            <p>Ceci est le contenu de la Section 2.</p>
-        </section>
-        <section id="section3">
-            <h2>Section 3</h2>
-            <p>Ceci est le contenu de la Section 3.</p>
-        </section>
-    </div>
+<body class="dark-theme">
+    <header>
+        <nav class="container">
+            <ul id="nav-menu">
+                <li><a href="index.html#accueil">Accueil</a></li>
+                <li><a href="travaux.html">Rubrique 1 : Travaux</a></li>
+                <li><a href="notes.html">Rubrique 2 : Notes</a></li>
+                <li><a href="documents.html">Rubrique 3 : Documents SI</a></li>
+                <li><a href="competences.html">Rubrique 4 : Compétences</a></li>
+                <li><a href="projet.html">Rubrique 5 : Projet Final</a></li>
+                <li><a href="soutenance.html">Rubrique 6 : Soutenance</a></li>
+                <li><a href="ressources.html">Rubrique 7 : Ressources</a></li>
+            </ul>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section id="accueil" class="hero">
+        <div class="container">
+            <button class="btn welcome-btn" onclick="showWelcome()">Bienvenue sur mon portfolio</button>
+            <h1>Portfolio<br>Système d'Information</h1>
+            <p class="subtitle">Retrouvez toutes mes productions académiques organisées selon les rubriques d'évaluation.</p>
+            <a href="travaux.html" class="btn">Commencer par les Travaux</a>
+        </div>
+    </section>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('nav-menu');
+            menu.classList.toggle('active');
+        }
+
+        function showWelcome() {
+            alert('Bienvenue ! Ce portfolio respecte les 7 rubriques pour une évaluation complète de mes compétences en SI.');
+        }
+    </script>
 </body>
 </html>
